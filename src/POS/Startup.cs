@@ -63,7 +63,7 @@ namespace POS
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("David Please Stop! It Hurts Me...");
+                await context.Response.WriteAsync("Access Denied");
             });
         }
     }
