@@ -17,10 +17,26 @@ namespace POS.Models
         public string Varietals { get; set; }
         public int Year { get; set; }
         [DataType(DataType.Currency)]
-        public float BottlePrice { get; set; }
+        public double BottlePrice { get; set; }
         [DataType(DataType.Currency)]
-        public float GlassPrice { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public double GlassPrice;
+        //{ get{ return this.GlassPrice; } set { this.GlassPrice = this.Cost * 1.5; } }
+        [DataType(DataType.Currency)]
+        public double Cost { get; set; }
+        public double Markup { get; set; }
         public float ABV { get; set; }
         public bool Availability { get; set; }
+        public int OrderId { get; set; }
+
+        public double GetGlassPrice()
+        {
+            return this.GlassPrice;
+        }
+
+        public void SetGlassPrice()
+        {
+            this.GlassPrice = this.Cost * 1.5;
+        }
     }
 }
