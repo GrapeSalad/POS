@@ -14,7 +14,7 @@ namespace POS.Controllers
         private POSDbContext db = new POSDbContext();
         public IActionResult Index()
         {
-            return View();
+            return View(db.Users);
         }
     }
 }

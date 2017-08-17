@@ -10,12 +10,24 @@
 @if (User.Identity.IsAuthenticated)
 {
     <p>Hello @User.Identity.Name!</p>
-    <p>@Html.ActionLink("Manage User Roles", "ManageUserRoles", "Role")</p>
-    @using (Html.BeginForm("LogOff", "Account"))
+    @if (User.IsInRole("Admin"))
     {
+        <p>@Html.ActionLink("Manage User Roles", "ManageUserRoles", "Role")</p>
+        @using (Html.BeginForm("LogOff", "Account"))
+        {
 
-        <input type="submit" class="btn btn-default" value="Log out" />
+            <input type="submit" class="btn btn-default" value="Log out" />
+        }
     }
+    else
+    {
+        @using (Html.BeginForm("LogOff", "Account"))
+        {
+
+            <input type="submit" class="btn btn-default" value="Log out" />
+        }
+    }
+    @Html.ActionLink("Sales Page", "Index", "Sales")
 }
 else
 {

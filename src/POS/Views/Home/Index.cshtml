@@ -1,20 +1,19 @@
-﻿@model IEnumerable<Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole>
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model IEnumerable<POS.Models.ApplicationUser>
+@using System.Security.Claims
 
-<h2>Roles Listing </h2>
-
-@Html.ActionLink("Create New Role", "Create") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
+<h2>Click yourself to log in</h2>
 <hr />
-<div>
-    @foreach (var role in Model)
-    {
-        <p>
-            <strong>@role.Name | </strong>
-            <span onclick="return confirm('Are you sure to delete?')"><a href="/Role/Delete?RoleName=@role.Name" class="delLink" style="color:red;">Delete</a></span> |
-            @Html.ActionLink("Edit", "Edit", new { roleName = @role.Name })
-        </p>
-    }
+@foreach (var user in Model)
+{
+    <div>
+        <h3>@Html.ActionLink(user.UserName, "Login", "Account", new { id = user.Id })</h3>
+    </div>
+}
+
+<div class="adminPortal">
+    @Html.ActionLink("Admin Portal", "Index", "Account")
 </div>

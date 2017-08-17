@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Sales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<POS.Models.Table>
+@if (User.IsInRole("Admin"))
+{
+    <h2>@User.Identity.Name - what would you like to do?</h2>
+    <hr />
+    <div id="addTableDiv">
+        <h3 class="addTableForm">Add a Table</h3>
+        <div id="addTableResult"></div>
+    </div>
+}
+else{
+    <h2>@User.Identity.Name - here are your tables</h2>
+    <hr />
+    <p>TABLES TABLES TABLES YAY</p>
+}
+<div id="leaveSales">
+    @Html.ActionLink("Back Home", "Index", "Home")
+</div>
